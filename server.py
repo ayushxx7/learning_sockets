@@ -1,4 +1,4 @@
-import socket
+import socket, time
 
 ### What is a socket?
 # It is an endpoint that receives data. socket sends and receives data. 
@@ -18,4 +18,9 @@ while True: #listen forever.
 
     clieentsocket.send(bytes(msg, "utf-8"))
 
+    while True:
+        time.sleep(3)
+        msg = f"The current time is: {time.time()}"
+        msg = f'{len(msg):<{HEADER_SIZE}}'+msg
+        clieentsocket.send(bytes(msg, "utf-8"))
 
